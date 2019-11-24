@@ -1,8 +1,7 @@
 package com.ayang818.myrabbit.ibatis.session.impl;
 
 import com.ayang818.myrabbit.ibatis.conf.Configuration;
-import com.ayang818.myrabbit.ibatis.session.SqlSessionFactory;
-import com.ayang818.myrabbit.ibatis.utils.XMLConfigBuilder;
+import com.ayang818.myrabbit.ibatis.utils.XMLConfigParser;
 
 import java.io.InputStream;
 
@@ -21,7 +20,7 @@ public class SqlSessionFactoryBuilder {
     }
 
     private Configuration getConfigFromXML(InputStream configXML) {
-        Configuration config = XMLConfigBuilder.loadConfiguration(configXML);
+        Configuration config = XMLConfigParser.loadConfiguration(configXML);
         return config;
     }
 }

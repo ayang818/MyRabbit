@@ -25,8 +25,8 @@ import java.util.Map;
 /**
  *  用于解析配置文件
  */
-public class XMLConfigBuilder {
-    private static final Logger LOGGER = LoggerFactory.getLogger(XMLConfigBuilder.class);
+public class XMLConfigParser {
+    private static final Logger LOGGER = LoggerFactory.getLogger(XMLConfigParser.class);
     /**
      * 解析主配置文件，把里面的内容填充到DefaultSqlSession所需要的地方
      */

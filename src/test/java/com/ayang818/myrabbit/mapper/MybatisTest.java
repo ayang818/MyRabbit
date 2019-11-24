@@ -5,6 +5,7 @@ import com.ayang818.myrabbit.ibatis.session.impl.DefaultSqlSession;
 import com.ayang818.myrabbit.ibatis.session.SqlSessionFactory;
 import com.ayang818.myrabbit.ibatis.session.impl.SqlSessionFactoryBuilder;
 import com.ayang818.myrabbit.model.User;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,7 +18,9 @@ import java.util.List;
  * @Date 2019/11/23 21:44
  **/
 public class MybatisTest {
-    public static void main(String[] args) throws IOException {
+
+    @Test
+    public void queryTest() throws IOException {
 //        使用sqlSession创建mapper的动态代理
 //        InputStream in = Resources.getResourceAsStream("SqlMapperConfig.xml");
         InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapperConfig.xml");
