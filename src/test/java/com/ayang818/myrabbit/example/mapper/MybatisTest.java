@@ -20,7 +20,7 @@ import java.util.List;
 public class MybatisTest {
 
     @Test
-    public void queryTest() throws IOException {
+    public void queryTest() throws IOException, ClassNotFoundException {
 //        使用sqlSession创建mapper的动态代理
 //        InputStream in = Resources.getResourceAsStream("SqlMapperConfig.xml");
         InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapperConfig.xml");
@@ -29,6 +29,7 @@ public class MybatisTest {
         // 用动态代理增强
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         List<User> users = userMapper.findAll();
+        System.out.println(users == null);
         for (User user : users) {
             System.out.println(user);
         }

@@ -25,6 +25,7 @@ public class DefaultSqlSession implements SqlSession {
 
     @Override
     public <T> T getMapper(Class<T> mapperCls) throws ClassNotFoundException {
+        System.out.println();
         Connection connection = DefaultConnection.getConnection(config);
         ProxyHandler proxyHandler = new ProxyHandler();
         return proxyHandler.bind(mapperCls, config.getMap(), connection);

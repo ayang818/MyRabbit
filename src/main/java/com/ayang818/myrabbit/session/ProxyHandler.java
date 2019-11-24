@@ -8,7 +8,9 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,11 +25,11 @@ public class ProxyHandler implements InvocationHandler {
     private Connection connection;
 
     @SuppressWarnings("unchecked warning")
-    public <T> T bind(Class<T> target, Map methodMap, Connection connection) {
+    public <T> T bind(Class<T> target, Map methodMap, Connection connection) throws ClassNotFoundException {
         this.target = target;
         this.methodMap = methodMap;
         this.connection = connection;
-        return (T) Proxy.newProxyInstance(target.getClassLoader(), target.getInterfaces(), this);
+        return (T) Proxy.newProxyInstance(target.getClassLoader(), new Class[] {target}, this);
     }
 
     @Override
@@ -36,9 +38,9 @@ public class ProxyHandler implements InvocationHandler {
         Mapper mapper = methodMap.get(key);
         String className = mapper.getResultType();
         Class<?> returnType = Class.forName(className);
-        Executor.executeSql(connection, mapper.getSqlString(), returnType);
-        method.setAccessible(true);
-        Object result = method.invoke(target, args);
-        return result;
+        List<?> linkList = Executor.executeSql(connection, mapper.getSqlString(), returnType);
+        List<Object> resList = new ArrayList<>();
+        resList.addAll(linkList);
+        return resList;
     }
 }

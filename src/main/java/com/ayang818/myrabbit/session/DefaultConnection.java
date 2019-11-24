@@ -16,7 +16,7 @@ import java.util.Properties;
 public class DefaultConnection {
     private static ThreadLocal<Connection> connectHolder;
 
-    public static Connection getConnection(Configuration config) throws ClassNotFoundException {
+    public static Connection getConnection(Configuration config) {
         if (connectHolder == null) {
             connectHolder = ThreadLocal.withInitial(() -> {
                 try {
@@ -25,11 +25,12 @@ public class DefaultConnection {
                     e.printStackTrace();
                 }
                 Properties properties = new Properties();
-                properties.setProperty("username", config.getUsername());
+                properties.setProperty("user", config.getUsername());
                 properties.setProperty("password", config.getPassword());
                 try {
                     return DriverManager.getConnection(config.getUrl(), properties);
                 } catch (SQLException e) {
+                    e.printStackTrace();
                     return null;
                 }
             });
