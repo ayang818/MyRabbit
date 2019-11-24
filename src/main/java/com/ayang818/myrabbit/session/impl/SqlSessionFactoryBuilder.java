@@ -1,7 +1,7 @@
-package com.ayang818.myrabbit.ibatis.session.impl;
+package com.ayang818.myrabbit.session.impl;
 
-import com.ayang818.myrabbit.ibatis.conf.Configuration;
-import com.ayang818.myrabbit.ibatis.utils.XMLConfigParser;
+import com.ayang818.myrabbit.conf.Configuration;
+import com.ayang818.myrabbit.utils.XMLConfigParser;
 
 import java.io.InputStream;
 

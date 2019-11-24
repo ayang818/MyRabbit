@@ -16,8 +16,8 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="com/ayang818/myrabbit/mapper/User.xml"/>
+        <mapper resource="com/ayang818/myrabbit/example/mapper/User.xml"/>
 <!--        使用注解的用法-->
-        <mapper class="com.ayang818.myrabbit.mapper.UserMapper"/>
+        <mapper class="com.ayang818.myrabbit.example.mapper.UserMapper"/>
     </mappers>
 </configuration>

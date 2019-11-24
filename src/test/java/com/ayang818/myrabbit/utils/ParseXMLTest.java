@@ -1,9 +1,8 @@
 package com.ayang818.myrabbit.utils;
 
-import com.ayang818.myrabbit.ibatis.io.Resources;
-import com.ayang818.myrabbit.ibatis.session.SqlSessionFactory;
-import com.ayang818.myrabbit.ibatis.session.impl.DefaultSqlSessionFactory;
-import com.ayang818.myrabbit.ibatis.session.impl.SqlSessionFactoryBuilder;
+import com.ayang818.myrabbit.io.Resources;
+import com.ayang818.myrabbit.session.impl.DefaultSqlSessionFactory;
+import com.ayang818.myrabbit.session.impl.SqlSessionFactoryBuilder;
 import org.junit.Test;
 
 import java.io.InputStream;

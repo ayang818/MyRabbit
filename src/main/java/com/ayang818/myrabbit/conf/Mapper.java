@@ -1,4 +1,4 @@
-package com.ayang818.myrabbit.ibatis.conf;
+package com.ayang818.myrabbit.conf;
 
 import lombok.Data;
 

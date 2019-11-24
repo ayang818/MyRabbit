@@ -1,10 +1,10 @@
-package com.ayang818.myrabbit.mapper;
+package com.ayang818.myrabbit.example.mapper;
 
-import com.ayang818.myrabbit.ibatis.io.Resources;
-import com.ayang818.myrabbit.ibatis.session.impl.DefaultSqlSession;
-import com.ayang818.myrabbit.ibatis.session.SqlSessionFactory;
-import com.ayang818.myrabbit.ibatis.session.impl.SqlSessionFactoryBuilder;
-import com.ayang818.myrabbit.model.User;
+import com.ayang818.myrabbit.io.Resources;
+import com.ayang818.myrabbit.session.impl.DefaultSqlSession;
+import com.ayang818.myrabbit.session.SqlSessionFactory;
+import com.ayang818.myrabbit.session.impl.SqlSessionFactoryBuilder;
+import com.ayang818.myrabbit.example.model.User;
 import org.junit.Test;
 
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.ayang818.myrabbit.model;
+package com.ayang818.myrabbit.example.model;
 
 import lombok.Data;
 

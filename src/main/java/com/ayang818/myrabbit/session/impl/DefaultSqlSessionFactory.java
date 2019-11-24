@@ -1,7 +1,7 @@
-package com.ayang818.myrabbit.ibatis.session.impl;
+package com.ayang818.myrabbit.session.impl;
 
-import com.ayang818.myrabbit.ibatis.conf.Configuration;
-import com.ayang818.myrabbit.ibatis.session.SqlSessionFactory;
+import com.ayang818.myrabbit.conf.Configuration;
+import com.ayang818.myrabbit.session.SqlSessionFactory;
 
 /**
  * @ClassName SqlSessionFactory

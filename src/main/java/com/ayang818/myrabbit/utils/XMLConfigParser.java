@@ -1,10 +1,10 @@
-package com.ayang818.myrabbit.ibatis.utils;
+package com.ayang818.myrabbit.utils;
 
 
-import com.ayang818.myrabbit.ibatis.annotation.Select;
-import com.ayang818.myrabbit.ibatis.conf.Configuration;
-import com.ayang818.myrabbit.ibatis.conf.Mapper;
-import com.ayang818.myrabbit.ibatis.io.Resources;
+import com.ayang818.myrabbit.annotation.Select;
+import com.ayang818.myrabbit.conf.Configuration;
+import com.ayang818.myrabbit.conf.Mapper;
+import com.ayang818.myrabbit.io.Resources;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.Element;
@@ -109,7 +109,7 @@ public class XMLConfigParser {
                 String methodName = element.attributeValue("id");
                 String resultType = element.attributeValue("resultType");
                 String queryString = selectElement.getText();
-                String key = namespace + "." + methodName;
+                String key = MethodKeyGenerator.generate(namespace, methodName);
                 Mapper mapper = new Mapper();
                 mapper.setSqlString(queryString);
                 mapper.setResultType(resultType);
@@ -147,7 +147,7 @@ public class XMLConfigParser {
                     mapper.setResultType(resultType);
                 }
                 mapper.setSqlString(sqlString);
-                String key = method.getDeclaringClass().getName()+"."+ method.getName();
+                String key = MethodKeyGenerator.generate(method.getDeclaringClass().getName(), method.getName());
                 hashMap.put(key, mapper);
             }
         }

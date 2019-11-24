@@ -1,4 +1,4 @@
-package com.ayang818.myrabbit.ibatis.io;
+package com.ayang818.myrabbit.io;
 
 import java.io.InputStream;
 

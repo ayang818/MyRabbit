@@ -1,7 +1,7 @@
-package com.ayang818.myrabbit.mapper;
+package com.ayang818.myrabbit.example.mapper;
 
-import com.ayang818.myrabbit.ibatis.annotation.Select;
-import com.ayang818.myrabbit.model.User;
+import com.ayang818.myrabbit.annotation.Select;
+import com.ayang818.myrabbit.example.model.User;
 
 
 import java.util.List;
