@@ -14,7 +14,7 @@ import java.io.InputStream;
  **/
 public class SqlSessionFactoryBuilder {
 
-    public SqlSessionFactory build(InputStream configXML) {
+    public DefaultSqlSessionFactory build(InputStream configXML) {
         Configuration config = getConfigFromXML(configXML);
         DefaultSqlSessionFactory sqlSessionFactory = new DefaultSqlSessionFactory(config);
         return sqlSessionFactory;

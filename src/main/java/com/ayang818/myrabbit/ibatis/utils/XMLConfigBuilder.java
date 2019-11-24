@@ -16,6 +16,8 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,19 +59,20 @@ public class XMLConfigBuilder {
             }
             // 取出mappers中的所有mapper标签，
             List<Node> mapperElements = root.selectNodes("//mappers/mapper");
+            Map<String, Mapper> mappers = new HashMap<>();
             for(Node mapperElement : mapperElements){
                 Element element = (Element) mapperElement;
                 Attribute attribute = element.attribute("resource");
                 if(attribute != null){
                     LOGGER.info("using xml");
                     String mapperPath = attribute.getValue();
-                    Map<String, Mapper> mappers = loadMapperConfiguration(mapperPath);
-                    configuration.setMapper(mappers);
+                    mappers.putAll(loadMapperConfiguration(mapperPath));
+                    configuration.setMap(mappers);
                 } else{
                     LOGGER.info("using annotation");
                     String mapperClassPath = element.attributeValue("class");
-                    Map<String,Mapper> mappers = loadMapperAnnotation(mapperClassPath);
-                    configuration.setMapper(mappers);
+                    mappers.putAll(loadMapperAnnotation(mapperClassPath));
+                    configuration.setMap(mappers);
                 }
             }
             return configuration;
@@ -134,12 +137,17 @@ public class XMLConfigBuilder {
             if (method.isAnnotationPresent(Select.class)) {
                 Select selectAnnotation = method.getAnnotation(Select.class);
                 String sqlString = selectAnnotation.value();
-                Class<?> returnType = method.getReturnType();
-                String resultType = returnType.getTypeName();
+                Type type = method.getGenericReturnType();
                 Mapper mapper = new Mapper();
+                if (type instanceof ParameterizedType) {
+                    ParameterizedType pType = (ParameterizedType) type;
+                    Type[] types = pType.getActualTypeArguments();
+                    Class domainClass = (Class) types[0];
+                    String resultType = domainClass.getName();
+                    mapper.setResultType(resultType);
+                }
                 mapper.setSqlString(sqlString);
-                mapper.setResultType(resultType);
-                String key = mapperClass.getPackage() +"."+mapperClass.getName() + method.getName();
+                String key = method.getDeclaringClass().getName()+"."+ method.getName();
                 hashMap.put(key, mapper);
             }
         }

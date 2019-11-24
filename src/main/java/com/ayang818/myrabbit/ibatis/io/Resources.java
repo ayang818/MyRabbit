@@ -10,6 +10,6 @@ import java.io.InputStream;
  **/
 public class Resources {
     public static InputStream getResourceAsStream(String filepath) {
-        return Thread.currentThread().getContextClassLoader().getResourceAsStream(filepath);
+        return Resources.class.getClassLoader().getResourceAsStream(filepath);
     }
 }

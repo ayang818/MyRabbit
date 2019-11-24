@@ -16,5 +16,5 @@ public class Configuration {
     private String password;
     private String url;
     private String driver;
-    private Map<String, Mapper> mapper;
+    private Map<String, Mapper> map;
 }
