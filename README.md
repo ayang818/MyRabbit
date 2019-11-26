@@ -30,7 +30,7 @@ update, delete demo which is used really likes mybatis, actually I designed this
 features. I will deploy it to maven central warehouse.
 
 ## About production environment
-It did not support to use into production environment directly. But I will use this framework in my personly project to ensure the feasibility. But you can read the source code to know how I design it. Make fun!
+It did not support to use into production environment directly. But I will use this framework in my personally project to ensure the feasibility in the future. But you can read the source code to know how I design it. Have fun!
 
 ## How to contribute   
 - Open your issues directly !
