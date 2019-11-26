@@ -4,7 +4,17 @@
 
 
 <mapper namespace="com.ayang818.myrabbit.example.mapper.UserMapper">
-<select id="findAll" resultType="com.ayang818.myrabbit.example.model.User">
-    select * from tbl_user limit 10 offset 0;
-</select>
+    <select id="findAll" resultType="com.ayang818.myrabbit.example.model.User">
+        select * from tbl_user where id=1;
+    </select>
+    <delete id="deleteOne">
+        delete from tbl_user where id=1;
+    </delete>
+    <insert id="insertOne">
+        insert into tbl_user (id, username,email, age, type, create_time) values(1, "ayang818" ,
+        "ayang818@qq.com", 11, 2, now());
+    </insert>
+    <update id="updateOne">
+        update tbl_user set username="ayang818" where id=1;
+    </update>
 </mapper>

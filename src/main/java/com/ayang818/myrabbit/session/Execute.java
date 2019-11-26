@@ -10,9 +10,9 @@ public interface Execute {
 
     <T> T selectOne();
 
-    int delete();
+    int delete(Connection connection, Mapper mapper);
 
-    int insert();
+    int insert(Connection connection, Mapper mapper);
 
-    int update();
+    int update(Connection connection, Mapper mapper);
 }

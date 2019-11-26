@@ -23,11 +23,11 @@ public class Executor implements Execute {
     @Override
     public <T> List<T> selectList(Connection connection, Mapper mapper, Class<?> resultTypeClass) {
         String sqlString = mapper.getSqlString();
-        PreparedStatement preparedStatement = null;
+        Statement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-            preparedStatement = connection.prepareStatement(sqlString);
-            resultSet = preparedStatement.executeQuery();
+            preparedStatement = connection.createStatement();
+            resultSet = preparedStatement.executeQuery(sqlString);
             List<T> resultList = new LinkedList<>();
             while (resultSet.next()) {
                 T resultItem = (T) resultTypeClass.getDeclaredConstructor().newInstance();
@@ -57,21 +57,48 @@ public class Executor implements Execute {
     }
 
     @Override
-    public int delete() {
+    public int delete(Connection connection, Mapper mapper) {
+        String sqlString = mapper.getSqlString();
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = connection.createStatement();
+            return statement.executeUpdate(sqlString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 
     @Override
-    public int insert() {
+    public int insert(Connection connection, Mapper mapper) {
+        String sqlString = mapper.getSqlString();
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = connection.createStatement();
+            return statement.executeUpdate(sqlString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 
     @Override
-    public int update() {
+    public int update(Connection connection, Mapper mapper) {
+        String sqlString = mapper.getSqlString();
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = connection.createStatement();
+            return statement.executeUpdate(sqlString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 
-    public static void release(PreparedStatement ps, ResultSet rs) {
+    public static void release(Statement ps, ResultSet rs) {
         if (rs != null) {
             try {
                 rs.close();

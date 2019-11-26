@@ -16,4 +16,10 @@ import java.util.List;
 public interface UserMapper {
     @Select("select * from tbl_user limit 10 offset 0")
     List<User> findAll();
+
+    int deleteOne();
+
+    int insertOne();
+
+    int updateOne();
 }

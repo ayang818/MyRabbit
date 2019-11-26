@@ -35,13 +35,21 @@ public class ProxyHandler implements InvocationHandler {
         String key = MethodKeyGenerator.generate(method.getDeclaringClass().getName(), method.getName());
         Mapper mapper = methodMap.get(key);
         String className = mapper.getResultType();
-        Class<?> returnType = Class.forName(className);
         Executor executor = new Executor();
         if (SqlTypeConsts.SELECT.equals(mapper.getSqlType())) {
+            Class<?> returnType = Class.forName(className);
             List<?> linkList = executor.selectList(connection, mapper, returnType);
-            List<Object> resList = new ArrayList<>();
-            resList.addAll(linkList);
+            List<Object> resList = new ArrayList<>(linkList);
             return resList;
+        }
+        if (SqlTypeConsts.DELETE.equals(mapper.getSqlType())) {
+            return executor.delete(connection, mapper);
+        }
+        if (SqlTypeConsts.INSERT.equals(mapper.getSqlType())) {
+            return executor.insert(connection, mapper);
+        }
+        if (SqlTypeConsts.UPDATE.equals(mapper.getSqlType())) {
+            return executor.update(connection, mapper);
         }
         return null;
     }
