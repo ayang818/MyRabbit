@@ -1,6 +1,7 @@
-package com.ayang818.myrabbit.session;
+package com.ayang818.myrabbit.session.impl;
 
 import com.ayang818.myrabbit.conf.Mapper;
+import com.ayang818.myrabbit.session.Execute;
 
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
@@ -17,9 +18,11 @@ import java.util.List;
  * @Author 杨丰畅
  * @Date 2019/11/24 16:34
  **/
-public class Executor {
+public class Executor implements Execute {
 
-    public static <T> List<T> executeSql(Connection connection, String sqlString, Class<T> resultTypeClass) {
+    @Override
+    public <T> List<T> selectList(Connection connection, Mapper mapper, Class<?> resultTypeClass) {
+        String sqlString = mapper.getSqlString();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
@@ -27,7 +30,7 @@ public class Executor {
             resultSet = preparedStatement.executeQuery();
             List<T> resultList = new LinkedList<>();
             while (resultSet.next()) {
-                T resultItem = resultTypeClass.getDeclaredConstructor().newInstance();
+                T resultItem = (T) resultTypeClass.getDeclaredConstructor().newInstance();
                 ResultSetMetaData metaData = resultSet.getMetaData();
                 int columnCount = metaData.getColumnCount();
                 for (int i = 1; i <= columnCount; i++) {
@@ -46,6 +49,26 @@ public class Executor {
             release(preparedStatement, resultSet);
         }
         return new LinkedList<>();
+    }
+
+    @Override
+    public <T> T selectOne() {
+        return null;
+    }
+
+    @Override
+    public int delete() {
+        return 0;
+    }
+
+    @Override
+    public int insert() {
+        return 0;
+    }
+
+    @Override
+    public int update() {
+        return 0;
     }
 
     public static void release(PreparedStatement ps, ResultSet rs) {

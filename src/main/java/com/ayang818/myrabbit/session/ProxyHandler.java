@@ -1,7 +1,8 @@
 package com.ayang818.myrabbit.session;
 
-import com.ayang818.myrabbit.conf.Configuration;
 import com.ayang818.myrabbit.conf.Mapper;
+import com.ayang818.myrabbit.enums.SqlTypeConsts;
+import com.ayang818.myrabbit.session.impl.Executor;
 import com.ayang818.myrabbit.utils.MethodKeyGenerator;
 
 import java.lang.reflect.InvocationHandler;
@@ -9,7 +10,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,9 +36,13 @@ public class ProxyHandler implements InvocationHandler {
         Mapper mapper = methodMap.get(key);
         String className = mapper.getResultType();
         Class<?> returnType = Class.forName(className);
-        List<?> linkList = Executor.executeSql(connection, mapper.getSqlString(), returnType);
-        List<Object> resList = new ArrayList<>();
-        resList.addAll(linkList);
-        return resList;
+        Executor executor = new Executor();
+        if (SqlTypeConsts.SELECT.equals(mapper.getSqlType())) {
+            List<?> linkList = executor.selectList(connection, mapper, returnType);
+            List<Object> resList = new ArrayList<>();
+            resList.addAll(linkList);
+            return resList;
+        }
+        return null;
     }
 }

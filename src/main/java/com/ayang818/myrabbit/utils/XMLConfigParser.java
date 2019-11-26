@@ -4,6 +4,7 @@ package com.ayang818.myrabbit.utils;
 import com.ayang818.myrabbit.annotation.Select;
 import com.ayang818.myrabbit.conf.Configuration;
 import com.ayang818.myrabbit.conf.Mapper;
+import com.ayang818.myrabbit.enums.SqlTypeConsts;
 import com.ayang818.myrabbit.io.Resources;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
@@ -59,7 +60,7 @@ public class XMLConfigParser {
             }
             // 取出mappers中的所有mapper标签，
             List<Node> mapperElements = root.selectNodes("//mappers/mapper");
-            Map<String, Mapper> mappers = new HashMap<>();
+            Map<String, Mapper> maps = new HashMap<>();
             for(Node mapperElement : mapperElements){
                 Element element = (Element) mapperElement;
                 Attribute attribute = element.attribute("resource");
@@ -67,14 +68,14 @@ public class XMLConfigParser {
                     LOGGER.info("using xml");
                     String mapperPath = attribute.getValue();
                     // 获取该配置文件下的所有SQL类别
-                    mappers.putAll(loadMapperConfiguration(mapperPath));
-                    configuration.setMap(mappers);
+                    maps.putAll(loadMapperConfiguration(mapperPath));
+                    configuration.setMap(maps);
                 } else{
                     LOGGER.info("using annotation");
                     String mapperClassPath = element.attributeValue("class");
                     // 获取该接口的所有方法
-                    mappers.putAll(loadMapperAnnotation(mapperClassPath));
-                    configuration.setMap(mappers);
+                    maps.putAll(loadMapperAnnotation(mapperClassPath));
+                    configuration.setMap(maps);
                 }
             }
             return configuration;
@@ -99,24 +100,15 @@ public class XMLConfigParser {
     private static Map<String,Mapper> loadMapperConfiguration(String mapperPath)throws IOException {
         InputStream in = null;
         try{
-            Map<String,Mapper> mappers = new HashMap<>();
+            Map<String,Mapper> mappers = new HashMap<>(16);
             in = Resources.getResourceAsStream(mapperPath);
             SAXReader reader = new SAXReader();
             Document document = reader.read(in);
             Element root = document.getRootElement();
-            String namespace = root.attributeValue("namespace");
-            List<Node> selectElements = root.selectNodes("//select");
-            for (Node selectElement : selectElements) {
-                Element element = (Element) selectElement;
-                String methodName = element.attributeValue("id");
-                String resultType = element.attributeValue("resultType");
-                String queryString = selectElement.getText();
-                String key = MethodKeyGenerator.generate(namespace, methodName);
-                Mapper mapper = new Mapper();
-                mapper.setSqlString(queryString);
-                mapper.setResultType(resultType);
-                mappers.put(key, mapper);
-            }
+            mappers.putAll(generateMapperByTag(root, "//select"));
+            mappers.putAll(generateMapperByTag(root, "//insert"));
+            mappers.putAll(generateMapperByTag(root, "//delete"));
+            mappers.putAll(generateMapperByTag(root, "//update"));
             return mappers;
         }catch(Exception e){
             throw new RuntimeException(e);
@@ -156,7 +148,33 @@ public class XMLConfigParser {
         return hashMap;
     }
 
-    public static Map<String, Mapper> generatorMapperByTag(String xpath) {
-        return new HashMap<>();
+    public static Map<String, Mapper> generateMapperByTag(Element root , String xpath) {
+        Map<String, Mapper> map = new HashMap<>();
+        String namespace = root.attributeValue("namespace");
+        List<Node> selectElements = root.selectNodes(xpath);
+        for (Node selectElement : selectElements) {
+            Element element = (Element) selectElement;
+            String methodName = element.attributeValue("id");
+            String resultType = element.attributeValue("resultType");
+            String queryString = selectElement.getText();
+            String key = MethodKeyGenerator.generate(namespace, methodName);
+            Mapper mapper = new Mapper();
+            mapper.setSqlString(queryString);
+            mapper.setResultType(resultType);
+            if (xpath.contains(SqlTypeConsts.SELECT)) {
+                mapper.setSqlType(SqlTypeConsts.SELECT);
+            }
+            if (xpath.contains(SqlTypeConsts.DELETE)) {
+                mapper.setSqlType(SqlTypeConsts.DELETE);
+            }
+            if (xpath.contains(SqlTypeConsts.INSERT)) {
+                mapper.setSqlType(SqlTypeConsts.INSERT);
+            }
+            if (xpath.contains(SqlTypeConsts.UPDATE)) {
+                mapper.setSqlType(SqlTypeConsts.UPDATE);
+            }
+            map.put(key, mapper);
+        }
+        return map;
     }
 }
