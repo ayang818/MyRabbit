@@ -18,12 +18,11 @@ import java.util.List;
  * @Author 杨丰畅
  * @Date 2019/11/23 21:44
  **/
-public class MybatisTest {
+public class MyRabbitTest {
 
     @Test
     public void queryTest() throws IOException, ClassNotFoundException {
-//        使用sqlSession创建mapper的动态代理
-//        InputStream in = Resources.getResourceAsStream("SqlMapperConfig.xml");
+        // 使用sqlSession创建mapper的动态代理
         InputStream resourceAsStream = Resources.getResourceAsStream("SqlMapperConfig.xml");
         SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(resourceAsStream);
         DefaultSqlSession sqlSession = sessionFactory.openSession();
