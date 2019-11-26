@@ -15,12 +15,10 @@ public class SqlSessionFactoryBuilder {
 
     public DefaultSqlSessionFactory build(InputStream configXML) {
         Configuration config = getConfigFromXML(configXML);
-        DefaultSqlSessionFactory sqlSessionFactory = new DefaultSqlSessionFactory(config);
-        return sqlSessionFactory;
+        return new DefaultSqlSessionFactory(config);
     }
 
     private Configuration getConfigFromXML(InputStream configXML) {
-        Configuration config = XMLConfigParser.loadConfiguration(configXML);
-        return config;
+        return XMLConfigParser.loadConfiguration(configXML);
     }
 }

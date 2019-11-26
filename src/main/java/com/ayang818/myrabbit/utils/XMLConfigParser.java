@@ -66,11 +66,13 @@ public class XMLConfigParser {
                 if(attribute != null){
                     LOGGER.info("using xml");
                     String mapperPath = attribute.getValue();
+                    // 获取该配置文件下的所有SQL类别
                     mappers.putAll(loadMapperConfiguration(mapperPath));
                     configuration.setMap(mappers);
                 } else{
                     LOGGER.info("using annotation");
                     String mapperClassPath = element.attributeValue("class");
+                    // 获取该接口的所有方法
                     mappers.putAll(loadMapperAnnotation(mapperClassPath));
                     configuration.setMap(mappers);
                 }
@@ -154,10 +156,7 @@ public class XMLConfigParser {
         return hashMap;
     }
 
-
-
-
-
-
-
+    public static Map<String, Mapper> generatorMapperByTag(String xpath) {
+        return new HashMap<>();
+    }
 }

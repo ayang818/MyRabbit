@@ -20,13 +20,11 @@ import java.util.Map;
  * @Date 2019/11/24 16:16
  **/
 public class ProxyHandler implements InvocationHandler {
-    private Class target;
     private Map<String, Mapper> methodMap;
     private Connection connection;
 
     @SuppressWarnings("unchecked warning")
     public <T> T bind(Class<T> target, Map methodMap, Connection connection) throws ClassNotFoundException {
-        this.target = target;
         this.methodMap = methodMap;
         this.connection = connection;
         return (T) Proxy.newProxyInstance(target.getClassLoader(), new Class[] {target}, this);

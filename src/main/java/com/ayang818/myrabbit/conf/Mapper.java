@@ -11,5 +11,6 @@ import lombok.Data;
 @Data
 public class Mapper {
     private String sqlString;
+    private String sqlType;
     private String resultType;
 }
