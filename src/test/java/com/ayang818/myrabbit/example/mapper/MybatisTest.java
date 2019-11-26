@@ -29,7 +29,6 @@ public class MybatisTest {
         // 用动态代理增强
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         List<User> users = userMapper.findAll();
-        System.out.println(users == null);
         for (User user : users) {
             System.out.println(user);
         }
