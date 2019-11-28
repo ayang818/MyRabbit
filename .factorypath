@@ -1,0 +1,11 @@
+<factorypath>
+    <factorypathentry kind="VARJAR" id="M2_REPO/mysql/mysql-connector-java/8.0.18/mysql-connector-java-8.0.18.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/com/google/protobuf/protobuf-java/3.6.1/protobuf-java-3.6.1.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/slf4j/slf4j-api/1.8.0-beta0/slf4j-api-1.8.0-beta0.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/slf4j/slf4j-simple/1.8.0-beta0/slf4j-simple-1.8.0-beta0.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/junit/junit/4.10/junit-4.10.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/projectlombok/lombok/1.18.10/lombok-1.18.10.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/dom4j/dom4j/2.1.1/dom4j-2.1.1.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/jaxen/jaxen/1.2.0/jaxen-1.2.0.jar" enabled="true" runInBatchMode="false"/>
+</factorypath>

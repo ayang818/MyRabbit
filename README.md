@@ -22,7 +22,7 @@ CREATE TABLE `tbl_user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1090809813 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 ```
 - Change the file sqlMapperConfig.xml` password to your own password. 
-- Make show you had already running your mysql server in your localhost.
+- Make sure you had already running your mysql server in your localhost.
 
 ## Run it
 You can run the MyRabbitTest.java to make sure this framework can work this unit test include simple select, insert,
