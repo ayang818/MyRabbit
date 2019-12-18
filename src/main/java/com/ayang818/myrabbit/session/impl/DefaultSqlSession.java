@@ -12,7 +12,7 @@ import java.util.Properties;
 
 /**
  * @ClassName SqlSession
- * @Dessription TODO
+ * @Description TODO
  * @Author 杨丰畅
  * @Date 2019/11/24 12:21
  **/

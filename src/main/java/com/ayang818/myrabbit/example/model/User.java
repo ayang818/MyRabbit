@@ -6,7 +6,7 @@ import java.util.Date;
 
 /**
  * @ClassName User
- * @Dessription TODO
+ * @Description TODO
  * @Author 杨丰畅
  * @Date 2019/11/23 21:09
  **/

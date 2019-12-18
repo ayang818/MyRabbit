@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * @ClassName MybatisTest
- * @Dessription TODO
+ * @Description TODO
  * @Author 杨丰畅
  * @Date 2019/11/23 21:44
  **/

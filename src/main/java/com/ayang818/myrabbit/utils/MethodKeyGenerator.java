@@ -2,7 +2,7 @@ package com.ayang818.myrabbit.utils;
 
 /**
  * @ClassName MethodKeyGenerator
- * @Dessription TODO
+ * @Description TODO
  * @Author 杨丰畅
  * @Date 2019/11/24 16:27
  **/

@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * @ClassName Executor
- * @Dessription TODO
+ * @Description TODO
  * @Author 杨丰畅
  * @Date 2019/11/24 16:34
  **/

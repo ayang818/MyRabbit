@@ -5,7 +5,7 @@ import com.ayang818.myrabbit.session.SqlSessionFactory;
 
 /**
  * @ClassName SqlSessionFactory
- * @Dessription TODO
+ * @Description TODO
  * @Author 杨丰畅
  * @Date 2019/11/24 12:21
  **/

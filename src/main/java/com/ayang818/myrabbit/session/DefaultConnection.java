@@ -9,7 +9,7 @@ import java.util.Properties;
 
 /**
  * @ClassName DefaultConnection
- * @Dessription TODO
+ * @Description TODO
  * @Author 杨丰畅
  * @Date 2019/11/24 16:02
  **/
@@ -31,8 +31,8 @@ public class DefaultConnection {
                     return DriverManager.getConnection(config.getUrl(), properties);
                 } catch (SQLException e) {
                     e.printStackTrace();
-                    return null;
                 }
+                return null;
             });
         }
         return connectHolder.get();
